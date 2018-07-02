@@ -97,7 +97,7 @@ $(function() {
             setTimeout(function() {
                 loadFeed(0);
                 done();
-            }, 2500);
+            }, 2000);
         });
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -117,7 +117,7 @@ $(function() {
     describe('New Feed Selection', function() {
         var oldUrl, newUrl;
         // Get a random feed other than feed(0)
-        randomIndex = Math.floor(Math.random() * allFeeds.length - 1) + 1;
+        randomIndex = Math.floor(Math.random() * (allFeeds.length - 1)) + 1;
 
         beforeEach(function (done) {
             setTimeout(function () {
@@ -125,7 +125,12 @@ $(function() {
                 loadFeed(randomIndex);
                 newUrl = allFeeds[randomIndex].url;
                 done();
-            }, 3000);
+            }, 1);
+        });
+
+        // Loading the initial feed again
+        afterEach(function () {
+            loadFeed(0);
         });
         
         /* TODO: Write a test that ensures when a new feed is loaded
@@ -135,12 +140,6 @@ $(function() {
         it('Changes content', function(done) {
             expect(oldUrl).not.toEqual(newUrl);
             done();
-        }, 2000);
-
-        // Loading the initial feed again
-        afterEach(function (done) {
-            loadFeed(0);
-            done();
-        }, 2000);
+        });
     });
 }());
