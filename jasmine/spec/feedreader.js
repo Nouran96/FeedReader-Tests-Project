@@ -72,25 +72,22 @@ $(function() {
             expect(hidden).not.toBeFalsy();
         });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
-        //  it('changes visibility when clicked', function() {
-        //      var menuIcon = document.querySelector('.menu-icon-link');
-        //      var body = document.body;
+        /* TODO: Write a test that ensures the menu changes
+        * visibility when the menu icon is clicked. This test
+        * should have two expectations: does the menu display when
+        * clicked and does it hide when clicked again.
+        */
+        it('changes visibility when clicked', function() {
+            var menuIcon = document.querySelector('.menu-icon-link');
+            var body = document.body;
 
-        //      if(body.classList.contains('menu-hidden')) {
-        //         menuIcon.click();
+            menuIcon.click();
+            expect(body.classList.contains('menu-hidden')).toBeFalsy();
 
-        //         expect(body.classList.contains('menu-hidden')).toBeFalsy();
-        //      }
-        //      else {
-        //         menuIcon.click();
-        //         expect(body.classList.contains('menu-hidden')).not.toBeFalsy();
-        //      }
-        //  });
+            menuIcon.click();
+            expect(body.classList.contains('menu-hidden')).not.toBeFalsy();
+
+        });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -100,7 +97,7 @@ $(function() {
             setTimeout(function() {
                 loadFeed(0);
                 done();
-            }, 3000);
+            }, 4000);
         });
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -116,10 +113,15 @@ $(function() {
         });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    // /* TODO: Write a new test suite named "New Feed Selection" */
+    // describe('New Feed Selection', function() {
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+    //     /* TODO: Write a test that ensures when a new feed is loaded
+    //      * by the loadFeed function that the content actually changes.
+    //      * Remember, loadFeed() is asynchronous.
+    //      */
+    //     it('the content changes', function() {
+            
+    //     });
+    // });
 }());
