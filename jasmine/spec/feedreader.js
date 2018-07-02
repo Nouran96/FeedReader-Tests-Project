@@ -97,7 +97,7 @@ $(function() {
             setTimeout(function() {
                 loadFeed(0);
                 done();
-            }, 2000);
+            }, 4000);
         });
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
