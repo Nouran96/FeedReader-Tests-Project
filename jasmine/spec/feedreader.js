@@ -97,7 +97,7 @@ $(function() {
             setTimeout(function() {
                 loadFeed(0);
                 done();
-            }, 4000);
+            }, 2500);
         });
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -113,15 +113,34 @@ $(function() {
         });
     });
 
-    // /* TODO: Write a new test suite named "New Feed Selection" */
-    // describe('New Feed Selection', function() {
+    /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
+        var oldUrl, newUrl;
+        // Get a random feed other than feed(0)
+        randomIndex = Math.floor(Math.random() * allFeeds.length - 1) + 1;
 
-    //     /* TODO: Write a test that ensures when a new feed is loaded
-    //      * by the loadFeed function that the content actually changes.
-    //      * Remember, loadFeed() is asynchronous.
-    //      */
-    //     it('the content changes', function() {
-            
-    //     });
-    // });
+        beforeEach(function (done) {
+            setTimeout(function () {
+                oldUrl = allFeeds[0].url;
+                loadFeed(randomIndex);
+                newUrl = allFeeds[randomIndex].url;
+                done();
+            }, 3000);
+        });
+        
+        /* TODO: Write a test that ensures when a new feed is loaded
+            * by the loadFeed function that the content actually changes.
+            * Remember, loadFeed() is asynchronous.
+            */
+        it('Changes content', function(done) {
+            expect(oldUrl).not.toEqual(newUrl);
+            done();
+        }, 2000);
+
+        // Loading the initial feed again
+        afterEach(function (done) {
+            loadFeed(0);
+            done();
+        }, 2000);
+    });
 }());
