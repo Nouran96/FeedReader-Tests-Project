@@ -111,32 +111,27 @@ $(function() {
         });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /* A test suite to check the loading of different feeds */
     describe('New Feed Selection', function() {
-        var oldUrl, newUrl;
-        // Get a random feed other than feed(0)
-        randomIndex = Math.floor(Math.random() * (allFeeds.length - 1)) + 1;
+        var oldContent, newContent;
 
         beforeEach(function (done) {
-            setTimeout(function () {
-                oldUrl = allFeeds[0].url;
-                loadFeed(randomIndex);
-                newUrl = allFeeds[randomIndex].url;
-                done();
-            }, 1);
+            // Load the first feed
+            loadFeed(0, function() {
+                // Store the content of its first entry
+                oldContent = document.querySelector('.entry').innerText;
+                // Load another feed
+                loadFeed(1, function() {
+                    // Store the content of its first entry in another variable
+                    newContent = document.querySelector('.entry').innerText;
+                    done();
+                });
+            });
         });
 
-        // Loading the initial feed again
-        afterEach(function () {
-            loadFeed(0);
-        });
-        
-        /* TODO: Write a test that ensures when a new feed is loaded
-            * by the loadFeed function that the content actually changes.
-            * Remember, loadFeed() is asynchronous.
-            */
+        //  Check to see that the content actually changed
         it('Changes content', function(done) {
-            expect(oldUrl).not.toEqual(newUrl);
+            expect(oldContent).not.toEqual(newContent);
             done();
         });
     });
