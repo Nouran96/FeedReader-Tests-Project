@@ -90,25 +90,23 @@ $(function() {
         });
     });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    // A new test suite for checking the presence of initial entries
     describe('Initial Entries', function() {
 
+        /* A test that ensures when the loadFeed
+        * function is called and completes its work, there is at least
+        * a single .entry element within the .feed container.*/
         beforeEach(function(done) {
             setTimeout(function() {
                 loadFeed(0);
                 done();
             }, 4000);
         });
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+        
         it('there is at least a single entry in the feeds', function(done) {
-            var feed = document.querySelector('.feed');
+            var feedEntries = $('.feed').find('.entry');
 
-            expect(feed.childElementCount).toBeGreaterThan(0);
+            expect(feedEntries.length).toBeGreaterThan(0);
             done();
         });
     });
